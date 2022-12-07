@@ -12,7 +12,7 @@ class UsersControllers {
     const { name, email, password, admin } = req.body
 
     if (!name ||!email || password.length < 6) {
-      throw new AppError("Name, email and password are required", 401)
+      throw new AppError("Confira se todos os campos estão devidamente preenchidos", 401)
     }
 
     const userExists = await knex("users")

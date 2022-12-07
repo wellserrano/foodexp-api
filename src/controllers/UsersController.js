@@ -11,7 +11,7 @@ class UsersControllers {
   async create(req, res) {
     const { name, email, password, admin } = req.body
 
-    if (!name ||!email ||!password) {
+    if (!name ||!email || password.length < 6) {
       throw new AppError("Name, email and password are required", 401)
     }
 
@@ -29,7 +29,7 @@ class UsersControllers {
       .insert({
         name,
         email,
-        admin,
+        admin: admin ?? false,
         password: hashedPassword,
       })
 

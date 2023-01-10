@@ -11,9 +11,10 @@ const app = express();
 
 app.use(cors());
 
-app.use( (req) => {
+app.use( (req, res, next) => {
   d = new Date()
   console.log(d.getHours()+':'+d.getMinutes() + " - requested:", req.url)
+  next()
 })
 
 app.use(express.json());

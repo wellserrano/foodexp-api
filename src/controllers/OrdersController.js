@@ -1,13 +1,13 @@
 const knex = require("../database/knex");
 const AppError = require("../utils/AppError");
 
-class OrdersControllers {
+class OrdersController {
   async create(req, res) {
-    console.log(req.body)
+    const { user_id, total, items } = req.body
     return res.json()
   }
 
 
 }
 
-module.exports = OrdersControllers;
+module.exports = OrdersController;

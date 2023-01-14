@@ -6,10 +6,6 @@ const { hash } = require("bcrypt")
 
 class UsersControllers {
 
-  index(req, res) {
-    res.json({status: 'Online'})
-  }
-
   async create(req, res) {
     const { name, email, password, admin } = req.body
 

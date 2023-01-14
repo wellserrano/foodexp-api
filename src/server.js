@@ -13,7 +13,12 @@ app.use(cors());
 
 app.use( (req, res, next) => {
   d = new Date()
-  console.log(d.getHours()+':'+d.getMinutes() + " - requested:", req.url)
+  console.log(`
+    ${d.getHours()}:${d.getMinutes()} 
+    - requested: ${req.url} 
+    - method: ${req.method} 
+  `);
+
   next()
 })
 

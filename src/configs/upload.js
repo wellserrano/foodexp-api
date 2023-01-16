@@ -3,6 +3,7 @@ const multer = require("multer");
 const crypto = require("crypto");
 
 const TMP_FOLDER = path.resolve(__dirname, "..", "temp");
+const ASSETS_FOLDER = path.resolve(__dirname, "..", "assets");
 const UPLOADS_FOLDER = path.resolve(TMP_FOLDER, "uploads");
 
 const MULTER = {
@@ -19,6 +20,7 @@ const MULTER = {
 
 module.exports = {
   TMP_FOLDER,
+  ASSETS_FOLDER,
   UPLOADS_FOLDER,
   MULTER,
 }

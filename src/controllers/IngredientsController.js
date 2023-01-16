@@ -2,6 +2,7 @@ const knex = require("../database/knex")
 const AppError = require("../utils/AppError")
 
 class IngredientsController {
+
   async create(req, res) {
     const { product_id, ingredients } = req.body
 

@@ -4,7 +4,9 @@ const AppError = require("../utils/AppError");
 class OrdersController {
   async create(req, res) {
     const { user_id, total, items } = req.body
-    return res.json()
+
+
+    return res.status(200).json()
   }
 
 

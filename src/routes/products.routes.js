@@ -12,5 +12,6 @@ const productsController = new ProductsController();
 productsRoutes.get("/", productsController.index);
 productsRoutes.post("/", productsController.create);
 productsRoutes.post("/image", upload.single("image"), productsController.saveImage);
+productsRoutes.post("/restartDB", productsController.populateDatabase)
 
 module.exports = productsRoutes;

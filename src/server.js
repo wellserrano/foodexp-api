@@ -11,14 +11,14 @@ const app = express();
 
 app.use(cors());
 
-app.use( (req, res, next) => {
-  d = new Date()
-  console.log(`${d.getHours()}:${d.getMinutes()} 
-    - requested: ${req.url} 
-    - method: ${req.method}`);
+// app.use( (req, res, next) => {
+//   d = new Date()
+//   console.log(`${d.getHours()}:${d.getMinutes()} 
+//     - requested: ${req.url} 
+//     - method: ${req.method}`);
 
-  next()
-})
+//   next()
+// })
 
 app.use(express.json());
 app.use(routes);

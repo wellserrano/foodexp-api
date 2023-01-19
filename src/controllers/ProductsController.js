@@ -52,43 +52,6 @@ class ProductsController {
     return res.status(201).json(imageFileName);
   }
 
-
-  async populateDatabase(req, res) {
-    const data = req.body
-
-    const dataJson = JSON.stringify(data);
-    const dataJson_objects = JSON.parse(dataJson)
-
-    const products = dataJson_objects.map(product => product.product)
-
-    await knex("products").insert(products)
-
-    const productsArray = await Promise.all(dataJson_objects.map(async e => {      
-      const product_id = await knex("products").select('id').where({name: e.product.name}).first()
-      
-      return {
-        ...product_id,
-        items: e.ingredients
-      }
-    }));
-
-    let ingredientsInsert = new Array();
-    
-    productsArray.forEach(product => {
-        product.items.map(ingredient => { 
-          ingredientsInsert.push({
-            product_id: product.id,
-            name: ingredient
-        });
-      });
-    });
-
-
-    await knex("ingredients").insert(ingredientsInsert)
-      
-    res.status(201).json("Data inserted successfully!");
-      
-  }
 }
 
 module.exports = ProductsController;

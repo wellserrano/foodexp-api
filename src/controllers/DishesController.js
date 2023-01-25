@@ -6,7 +6,7 @@ class DishesController {
     const { category, user_id } = req.query;
 
     const data = await knex
-      .select('products.*', knex.raw("CASE WHEN favorites.id > 0 THEN true ELSE false END AS isFavorite"))
+      .select('products.*', 'favorites.id as favorite_id')
       .from('products')
       .leftJoin('favorites', function() {
         this.on('products.id', '=', 'favorites.product_id')

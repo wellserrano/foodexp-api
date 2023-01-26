@@ -5,7 +5,10 @@ class FavoritesController {
   async index(req, res) {
     const { id: user_id } = req.query
     
-    const data = await knex("favorites")
+    const data = await knex
+      .select('favorites.id as favorite_id', 'products.*')
+      .from('favorites')
+      .join('products', 'favorites.product_id', 'products.id')
       .where({ user_id })
 
     return res.json(data)

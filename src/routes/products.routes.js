@@ -9,6 +9,7 @@ const upload = multer(uploadConfig.MULTER)
 const ProductsController = require('../controllers/ProductsController')
 const productsController = new ProductsController();
 
+productsRoutes.get("/", productsController.index);
 productsRoutes.post("/", productsController.create);
 productsRoutes.post("/image", upload.single("image"), productsController.saveImage);
 

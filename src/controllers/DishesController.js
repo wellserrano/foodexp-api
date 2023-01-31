@@ -19,13 +19,10 @@ class DishesController {
 
   async search(req, res) {
     const { like } = req.query
-
-    console.log(like)
     
     const data = await knex("products")
     .whereLike('name', `%${like}%`)
     
-    console.log(data)
     return res.json(data)
   }
 }

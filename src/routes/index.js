@@ -11,6 +11,7 @@ const productsRouter = require("./products.routes")
 const ingredientsRouter = require("./ingredients.routes");
 
 const dishesRouter = require("./dishes.routes");
+const checkoutRoutes = require("./checkout.routes");
 const favoritesRoutes = require("./favorites.routes");
 
 routes.use("/status", statusRouter);
@@ -22,6 +23,7 @@ routes.use("/products", productsRouter);
 routes.use("/ingredients", ingredientsRouter);
 
 routes.use("/dishes", dishesRouter);
+routes.use("/checkout", checkoutRoutes);
 routes.use("/favorites", favoritesRoutes);
 
 

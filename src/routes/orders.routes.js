@@ -5,6 +5,6 @@ const ordersRoutes = Router();
 const OrdersControllers = require('../controllers/OrdersController')
 const ordersControllers = new OrdersControllers();
 
-ordersRoutes.post("/", ordersControllers.create)
+ordersRoutes.post("/", ordersControllers.create);
 
 module.exports = ordersRoutes;

@@ -18,6 +18,16 @@ class CheckoutController {
     return res.status(200).json(result)
   }
 
+  async create(req, res) {  
+
+    const { user_id, total } = req.body
+
+    const order_id = await knex("orders")
+      .insert({ user_id, total})
+  
+    return res.status(201).json(order_id)
+  }
+
 
 }
 

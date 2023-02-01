@@ -53,7 +53,6 @@ class OrdersController {
         status: item.status
       }
     })
-    
     return res.status(200).json(formattedData)
   }
 
@@ -74,6 +73,41 @@ class OrdersController {
 
 
     return res.status(201).json()
+  }
+
+  async update(req, res) {
+    const { order_id: id, status } = req.query
+
+    await knex("orders")
+      .update({ status })
+      .where({ id })
+
+    return res.status(200).json()
+  }
+
+  async fetchDetails(req, res) {
+    const { id } = req.query;
+
+    const dataOrder = await knex
+      .select('id as order_id', 'status', 'total')
+      .from("orders")
+      .where({ id })
+      .first()
+
+    const dataItems = await knex
+      .select('products.id as product_id', 'order_items.quantity', 'products.name', 'products.price', 'products.image')
+      .from("order_items")
+      .join('products', 'order_items.product_id', 'products.id')
+      .where({ order_id: id })
+
+      
+      const data = {
+        ...dataOrder,
+        items: [...dataItems]
+        
+      }
+      
+      res.status(200).json(data)
   }
 
 

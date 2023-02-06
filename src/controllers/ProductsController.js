@@ -52,6 +52,30 @@ class ProductsController {
     return res.status(201).json(imageFileName);
   }
 
+  async update(req, res) {
+    const { id, name, description, price, image, ingredients } = req.body
+    
+    await knex("products")
+      .update({ name, description, price, image: image ?? undefined})
+      .where({ id })
+
+    await knex("ingredients")
+      .where({ product_id: id })
+      .del()
+
+    const ingredientsInsert = ingredients.map(ingredient => {
+      return {
+        product_id: id,
+        name: ingredient
+      }
+    })
+
+    await knex("ingredients")
+      .insert(ingredientsInsert);
+
+    return res.json()
+  }
+
 }
 
 module.exports = ProductsController;

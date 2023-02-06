@@ -20,9 +20,13 @@ class DishesController {
   async search(req, res) {
     const { like } = req.query
     
-    const data = await knex("products")
-    .whereLike('name', `%${like}%`)
-    
+    const data = await knex
+      .select('products.*')
+      .from("products")
+      .join("ingredients", 'products.id', 'ingredients.product_id')
+      .whereLike('products.name', `%${like}%`)
+      .orWhereLike('ingredients.name', `%${like}%`)
+
     return res.json(data)
   }
 }

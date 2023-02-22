@@ -56,7 +56,7 @@ class ProductsController {
     const { id, name, description, price, image, ingredients } = req.body
     
     await knex("products")
-      .update({ name, description, price, image: image ?? undefined})
+      .update({ name, description, price: price ?? undefined, image: image ?? undefined})
       .where({ id })
 
     await knex("ingredients")

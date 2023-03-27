@@ -20,8 +20,10 @@ class ProductsController {
           match => match === "_" || match === "-" ? " " : "")
     );
 
-    const data = { ...response_products, ingredients }
-    
+    const data = { 
+      ...response_products, 
+      ingredients 
+    }
 
     return res.status(200).json(data);
   
@@ -74,6 +76,17 @@ class ProductsController {
       .insert(ingredientsInsert);
 
     return res.json()
+  }
+
+  async delete(req, res) {
+    const { id } = req.body
+
+    await knex("products")
+    .where({ id })
+    .del()
+
+    return res.status(200).json()
+
   }
 
 }

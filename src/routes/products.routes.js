@@ -13,5 +13,6 @@ productsRoutes.get("/", productsController.index);
 productsRoutes.put("/", productsController.update);
 productsRoutes.post("/", productsController.create);
 productsRoutes.post("/image", upload.single("image"), productsController.saveImage);
+productsRoutes.delete("/", productsController.delete);
 
 module.exports = productsRoutes;

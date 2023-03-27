@@ -26,6 +26,7 @@ class DishesController {
       .join("ingredients", 'products.id', 'ingredients.product_id')
       .whereLike('products.name', `%${like}%`)
       .orWhereLike('ingredients.name', `%${like}%`)
+      .distinct('products.id')
 
     return res.json(data)
   }
